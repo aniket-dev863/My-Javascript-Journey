@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Console Logger Demo</title>
+    <style>
+        body {
+            font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+            padding: 20px;
+        }
+
+        h1 {
+            margin-bottom: 8px;
+        }
+
+        #console {
+            white-space: pre-wrap;
+            background: #0b1020;
+            color: #e6f1ff;
+            padding: 12px;
+            border-radius: 8px;
+            min-height: 200px;
+            max-height: 60vh;
+            overflow: auto;
+            font-family: monospace;
+        }
+
+        .hint {
+            color: #666;
+            font-size: 0.9rem;
+            margin-top: 8px;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Console Logger Demo</h1>
+    <div id="console">-- page console output will appear here --\n</div>
+    <p class="hint">Tip: open DevTools (F12 / Cmd+Opt+I) to also see the browser console.</p>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
