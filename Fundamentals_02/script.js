@@ -47,5 +47,47 @@ console.log(findAge(2008));
 /**
  * We can Invoke a Fuunction created using function Declaration before the actual Decleration .
  * but we cannot do the same with the Function Expression 
- * FUnction invoke shouild come after the function expression only .
+ * Function invoke shouild come after the function expression only .
  */
+/**
+ * Arrow Functions in Javascript
+ * 
+ * Simplest Form only with one parameter 
+ * one code .
+ * 
+ * we Can ommit return only when we have a one   liner function here . 
+ */
+const calcAge3 = birthyear => 2037 - birthyear;
+const age3 = calcAge3(1991);
+console.log(age3);
+
+// Years until retirement 
+const yearsUntilRetirement = (birthyear, firstName) => {
+    const age = 2025 - birthyear;
+    const retirement = 65 - age;
+    return `${firstName} retires in ${retirement} years .  `;
+}
+
+console.log(yearsUntilRetirement(2003, 'Aniket'));
+
+/**
+ * Difference between Arrow function .
+ * Arrow Function -> doesnt take the this keyword ;
+ */
+
+// RECURSION 
+
+const cutFruitPieces = function (fruit) {
+    return fruit * 4;
+}
+
+const fruitProcessor = function (apples, oranges) {
+
+    const applePieces = cutFruitPieces(apples);
+    const orangePieces = cutFruitPieces(oranges);
+    return `Juice with ${applePieces} pieces of apple and ${orangePieces} pieces of orange . `;
+
+};
+
+console.log(fruitProcessor(2, 3));
+
