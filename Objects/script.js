@@ -16,9 +16,20 @@ const aniketArray = [
 const aniket = {
     firstName: 'Aniket',
     lastName: 'Vyavahare',
-    age: 2025 - 2004,
+    birthYear: 2004,
     job: 'Student',
-    friends: ['Anish', 'Ankit', 'Atharv']
+    friends: ['Anish', 'Ankit', 'Atharv'],
+    // calcAge: function (birthYear) {
+    //     return 2025 - birthYear;
+    // }
+
+    calcAge: function () {
+        this.age = 2025 - this.birthYear;
+        return this.age;
+    },
+    writeSummary: function () {
+        return `${this.firstName} is a ${this.age} old  ${this.job} studying at ${this.college} College . `;
+    }
 };
 
 /**
@@ -65,3 +76,51 @@ aniket.homeState = 'Maharashtra';
 // called Anish 
 
 console.log(`Aniket has ${aniket.friends.length} friends his best friend is ${aniket.friends[0]} . `);
+
+/**
+ * Object Methods .
+ * 
+ * We can add functions to the objects like we do it in
+ * the key value pairs and 
+ * 
+ * Function calcAge added to Aniket .
+ */
+
+//console.log(aniket.calcAge(2004));
+//console.log(aniket['calcAge'](2004));
+
+/**
+ * This keyword is used to refer the
+ * object calling this method .
+ * this.bithYear means the : Take the birthYear of
+ * that object which has called this method .
+ * 
+ * We have shown both methods in the object aniket.
+ */
+
+console.log(aniket.calcAge()); //. this keyword handles the work here .
+
+console.log(aniket.age);// age function is used here ; 
+
+// Challenge : -> 
+//" Aniket is a 21 years old student and he does not have a  Drivers Licence .  " ; 
+
+console.log(aniket.writeSummary());
+
+/**
+ * Loops in JavaScript .
+ * 
+ */
+
+// for (let rep = 0; rep < 10; rep++) {
+//     console.log(`Lifting weighs : ${rep}`);
+// }
+const types = [];
+for (let i = 0; i < aniketArray.length; i++) {
+    console.log(aniketArray[i], typeof (aniketArray[i]));
+
+    types[i] = typeof (aniketArray[i]);
+}
+
+console.log(types);
+
