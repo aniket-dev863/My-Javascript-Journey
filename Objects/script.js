@@ -124,3 +124,40 @@ for (let i = 0; i < aniketArray.length; i++) {
 
 console.log(types);
 
+const years = [2000, 2008, 2003, 2005];
+const age = [];
+for (let i = 0; i < years.length; i++) {
+    age.push(2025 - years[i]);
+}
+
+console.log(age);
+
+/**
+ * Continue : Exits all the part present in current 
+ * loop , after the written continue text .
+ * 
+ * Break : Terminate the whole Iteration 
+ * 
+ * 
+ */
+
+for (let i = age.length - 1; i >= 0; i--) {
+    console.log(age[i]);
+}
+
+console.log(`A While Loop `);
+let i = 0;
+while (i < age.length) {
+    console.log(age[i]);
+    i++;
+}
+
+console.log(`Roll Dice until its Value becomes 6 `);
+let dice = Math.trunc(Math.random() * 6) + 1;
+
+while (dice !== 6) {
+    console.log(`You rolled a dice : ${dice}`);
+    dice = Math.trunc(Math.random() * 6) + 1;
+}
+
+console.log(`Completed Found 6`);
