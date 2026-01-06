@@ -55,7 +55,56 @@ console.log(guestsCorrect);
 /**
  * Nullish Coalescing operator works with
  * the nullish values .
- *
+  
  * Nullish : null ,Undefined (Not 0 or ' ' );
- *
  */
+
+const res1 = {
+  name: "Capri",
+  numGuests: 0,
+};
+
+const res2 = {
+  name: "Pizzeria",
+  ownerName: "Aniket Vyavahare",
+};
+
+// Shortcircuiting using OR Operator.
+
+res2.numGuests = res2.numGuests || 10;
+//console.log(res2.numGuests);
+
+// OR Assignment Operator
+// res2.numGuests ||= 10;
+// res1.numGuests ||= 10;
+// console.log(res2.numGuests);
+// console.log(res1.numGuests);
+
+/**
+ * If We are given the
+ * numGuests in Res1 are 0 .
+ * Our OR Operator will fail
+ * for OR Operator the 0 is also a Falsy value .
+ */
+
+// We Can use Nullish Assignment Operator.
+
+res1.numGuests ??= 10;
+res2.numGuests ??= 10;
+console.log(res1.numGuests);
+console.log(res2.numGuests);
+
+// AND Assignment Operator
+// Make the name of the owner Anonymous .
+/**
+ * Logical Operators treat the
+ * '' as a Falsy value.
+ *
+ * If the name of the owner is present make it anonymous .
+ */
+
+res1.ownerName &&= "<ANONYMOUS>";
+res2.ownerName &&= "<ANONYMOUS>";
+
+console.log(res1);
+console.log(res2);
