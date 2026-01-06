@@ -38,6 +38,10 @@ const restuarant = {
     console.log(`Here is a delicous pasta with 
     ${ing1},${ing2} and ${ing3}`);
   },
+  orderPizza: function (mainIngredient, ...otherIngredients) {
+    console.log(mainIngredient);
+    console.log(otherIngredients);
+  },
 };
 
 const arr = [1, 2, ...[3, 4]];
@@ -71,4 +75,12 @@ add(2, 3);
 add(5, 3, 7, 8, 9);
 add(1, 2, 3, 4, 5, 6, 7, 8, 9);
 
-const x = [];
+const x = [23, 5, 7];
+add(...x);
+
+/**
+ * Our Function can now use both arrays
+ * and Normal Values .Using REST Parameters
+ * and Spread .
+ */
+restuarant.orderPizza("Mushrooms", "onion", "olives", "Spinach");
