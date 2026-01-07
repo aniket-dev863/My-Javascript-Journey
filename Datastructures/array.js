@@ -43,3 +43,19 @@ const [d = 1, f = 1, g = 1] = smallArr;
 console.log(d, f, g);
 // the values g DNE
 // We get our default values there .
+
+// Looping arrays using for of loop
+const menu = [...restuarant.starterMenu, ...restuarant.mainMenu];
+for (const item of menu) console.log(item);
+/**
+ * array.entries()
+ */
+// If we need index of element  for of loop
+for (const item of menu.entries()) {
+  console.log(`${item[0] + 1} : ${item[1]}`);
+}
+
+// Using the destructuring the array.
+for (const [i, el] of menu.entries()) {
+  console.log(i + 1, `:`, el);
+}
