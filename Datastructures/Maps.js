@@ -66,4 +66,32 @@ const arr = [1, 2];
 rest.set(arr, "test");
 console.log(rest.get(arr));
 console.log(rest.get("open"));
-rest.set(document.querySelector("h1"), "Heading");
+//rest.set(document.querySelector("h1"), "Heading");
+
+// Another Way to populate a Map.
+const question = new Map([
+  ["question", "What is the best Programming language"],
+  [1, "CPP"],
+  [2, "Java"],
+  [3, "Javascript"],
+  [true, "Yes That's the Best Language in The World "],
+  [false, "Try Again"],
+]);
+console.log(question);
+
+console.log(Object.entries(restuarant.openingHours));
+const hourMap = new Map(Object.entries(restuarant.openingHours));
+console.log(hourMap.get("thu"));
+
+// Iteration in Maps .
+// using destructuring
+for (const [e, f] of question) {
+  if (typeof e === "number") console.log(`Answer ${e} : ${f}`);
+}
+const answer = 3;
+question.set("Correct", 3);
+console.log(question.get(question.get("Correct") === answer));
+
+// Converting map Back to an Array
+// using the Spread operator.
+console.log([...question]);
