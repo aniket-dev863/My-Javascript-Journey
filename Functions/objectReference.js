@@ -11,7 +11,7 @@ const person = {
 const marriedAdd = function (obj, newLastName) {
   const newObj = { ...obj };
   newObj.lastName = newLastName;
-
+  newObj.isMarried = true;
   return newObj;
 };
 const arr = ["Ankit", "Aniket"];
