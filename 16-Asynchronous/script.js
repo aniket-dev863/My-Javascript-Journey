@@ -24,14 +24,15 @@ const renderCountryData = function (data, className = "") {
             </article>
             `;
   countriesContainer.insertAdjacentHTML("beforeend", html);
-  countriesContainer.style.opacity = 1;
+  //countriesContainer.style.opacity = 1;
 };
 
 const renderError = function (msg) {
   console.log(`${msg}`);
   countriesContainer.insertAdjacentText("beforeend", msg);
-  countriesContainer.style.opacity = 1;
+  //countriesContainer.style.opacity = 1;
 };
+
 /*
 const getCountryDataAndNeighbour = function (country) {
   const request = new XMLHttpRequest();
@@ -69,10 +70,12 @@ const getCountryData = function (country) {
     });
 };
 */
+
 const getCountryData = function (country) {
   fetch(`https://restcountries.com/v2/name/${country}`)
     .then((response) => response.json())
     .then((data) => {
+      console.log(data);
       renderCountryData(data[0]);
       const neighbour = data[0].borders?.[0];
       return fetch(`https://restcountries.com/v2/alpha/${neighbour}`);
@@ -82,15 +85,22 @@ const getCountryData = function (country) {
     .catch((err) => {
       console.error(`${err}`);
       renderError(`Something went wrong ${err.message} Try Again `);
+    })
+    .finally(() => {
+      countriesContainer.style.opacity = 1;
     });
 };
 btn.addEventListener("click", function () {
-  getCountryData("Bharat");
+  getCountryData("Portugal");
 });
+
+//getCountryData("alklkdsklkd");
 // Handeling erros in promises.
 /**
  * Fetch Promise is rejected when user is disconnectd from internet .
  *
  * Errors Propogate down the chain until they are caught.
- * if they are not caught -> we get uncoaught error in console
+ * if they are not caught -> we get uncoaught error in console .
+ *
+ * Fetch Promise is still fulfilled with a error 404 .
  */
