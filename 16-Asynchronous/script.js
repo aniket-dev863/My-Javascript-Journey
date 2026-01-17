@@ -10,17 +10,9 @@ const countriesContainer = document.querySelector(".countries");
 // https://api.bigdatacloud.net/data/reverse-geocode-client?latitude=${lat}&longitude=${lng}
 
 ///////////////////////////////////////
-
-const getCountryData = function (country) {
-  const request = new XMLHttpRequest();
-  request.open("GET", `https://restcountries.com/v2/name/${country}`);
-  request.send();
-  request.addEventListener("load", function () {
-    console.log(this.responseText);
-
-    const [data] = JSON.parse(this.responseText);
-    const html = `
-        <article class="country">
+const renderCountryData = function (data, className = "") {
+  const html = `
+        <article class="country ${className}">
             <img class="country__img" src="${data.flag}" />
             <div class="country__data">
                 <h3 class="country__name">${data.name}</h3>
@@ -31,10 +23,28 @@ const getCountryData = function (country) {
             </div>
             </article>
             `;
-    countriesContainer.insertAdjacentHTML("beforeend", html);
-    countriesContainer.style.opacity = 1;
+  countriesContainer.insertAdjacentHTML("beforeend", html);
+  countriesContainer.style.opacity = 1;
+};
+const getCountryDataAndNeighbour = function (country) {
+  const request = new XMLHttpRequest();
+  request.open("GET", `https://restcountries.com/v2/name/${country}`);
+  request.send();
+  request.addEventListener("load", function () {
+    console.log(this.responseText);
+
+    const [data] = JSON.parse(this.responseText);
+    renderCountryData(data);
+    const neighbour = data.borders?.[0];
+    const request2 = new XMLHttpRequest();
+    request2.open("GET", `https://restcountries.com/v2/alpha/${neighbour}`);
+    request2.send();
+    request2.addEventListener("load", function () {
+      console.log(this.responseText);
+      const data2 = JSON.parse(this.responseText);
+      console.log(data2);
+      renderCountryData(data2, "neighbour");
+    });
   });
 };
-getCountryData(`japan`);
-getCountryData(`thailand`);
-getCountryData(`russia`);
+getCountryDataAndNeighbour(`usa`);
