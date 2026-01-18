@@ -69,11 +69,18 @@ const getCountryData = function (country) {
       renderCountryData(data[0]);
     });
 };
-*/
+
 
 const getCountryData = function (country) {
   fetch(`https://restcountries.com/v2/name/${country}`)
-    .then((response) => response.json())
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error(
+          `An Error Ocurred while Fetch . The Error is ${response.status}`,
+        );
+      }
+      return response.json();
+    })
     .then((data) => {
       console.log(data);
       renderCountryData(data[0]);
@@ -90,8 +97,10 @@ const getCountryData = function (country) {
       countriesContainer.style.opacity = 1;
     });
 };
+
+*/
 btn.addEventListener("click", function () {
-  getCountryData("Portugal");
+  getCountryDataAndNeighbour("Bharat");
 });
 
 //getCountryData("alklkdsklkd");
@@ -104,3 +113,41 @@ btn.addEventListener("click", function () {
  *
  * Fetch Promise is still fulfilled with a error 404 .
  */
+
+// Now lets Write the gt country data in a clean manner a function .
+
+const getJSON = function (URL, msg) {
+  return fetch(URL).then((response) => {
+    if (!response.ok) {
+      throw new Error(`${msg} ${response.status}`);
+    }
+    return response.json();
+  });
+};
+const getCountryDataAndNeighbour = function (country) {
+  getJSON(
+    `https://restcountries.com/v2/name/${country}`,
+    `Something went Wrong during fetch `,
+  )
+    .then((data) => {
+      renderCountryData(data[0]);
+      const neighbour = data[0].borders?.[0];
+      if (!neighbour) {
+        throw new Error(`This country has no Neighbour`);
+      }
+      return getJSON(
+        `https://restcountries.com/v2/alpha/${neighbour}`,
+        `Something went Wrong`,
+      );
+    })
+    .then((data2) => {
+      renderCountryData(data2, `neighbour`);
+    })
+    .catch((err) => {
+      console.log(`${err}`);
+      renderError(`SomeThing went Wrong ${err.message} . `);
+    })
+    .finally(() => {
+      countriesContainer.style.opacity = 1;
+    });
+};
