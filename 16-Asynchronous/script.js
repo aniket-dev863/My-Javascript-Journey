@@ -100,7 +100,7 @@ const getCountryData = function (country) {
 
 */
 btn.addEventListener("click", function () {
-  getCountryDataAndNeighbour("Bharat");
+  getLocJSON(-33.933, 18.747);
 });
 
 //getCountryData("alklkdsklkd");
@@ -149,5 +149,20 @@ const getCountryDataAndNeighbour = function (country) {
     })
     .finally(() => {
       countriesContainer.style.opacity = 1;
+    });
+};
+
+// getcountry and Neighbour data using a Lat and Long api
+
+const getLocJSON = function (lat, lng) {
+  fetch(
+    `https://api.bigdatacloud.net/data/reverse-geocode-client?latitude=${lat}&longitude=${lng}`,
+  )
+    .then((response) => {
+      console.log(response);
+      return response.json();
+    })
+    .then((data) => {
+      getCountryDataAndNeighbour(data.localityInfo.administrative[0].name);
     });
 };
