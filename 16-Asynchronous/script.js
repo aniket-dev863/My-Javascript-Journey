@@ -160,9 +160,17 @@ const getLocJSON = function (lat, lng) {
   )
     .then((response) => {
       console.log(response);
+      if (!response.ok) {
+        throw new Error(`Given lat and lng data is not accesible `);
+      }
       return response.json();
     })
     .then((data) => {
-      getCountryDataAndNeighbour(data.localityInfo.administrative[0].name);
+      console.log(
+        `You are in ${data.city} City and Contnient ${data.continent} .`,
+      );
+      return getCountryDataAndNeighbour(
+        data.localityInfo.administrative[0].name,
+      );
     });
 };
